@@ -126,6 +126,40 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Migrations
                     b.ToTable("BookGenre");
                 });
 
+            modelBuilder.Entity("LibraryManagmentSystemMVC.Domain.Model.BookReservation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ReservationStateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ReservationStateId")
+                        .IsUnique();
+
+                    b.ToTable("BookReservations");
+                });
+
             modelBuilder.Entity("LibraryManagmentSystemMVC.Domain.Model.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -568,7 +602,6 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Migrations
 
             modelBuilder.Entity("LibraryManagmentSystemMVC.Domain.Model.ReservationState", b =>
                 {
-                    b.Navigation("Reservation");
                 });
 #pragma warning restore 612, 618
         }
