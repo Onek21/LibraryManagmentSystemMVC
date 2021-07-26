@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LibraryManagmentSystemMVC.Application.ViewModel.BookVm.BookForListVm>
+
+@{
+    ViewData["Title"] = "BookList";
+}
+
+<h1>Lista książek</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="bookTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Wydawnictwo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishingHouse)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#bookTable').DataTable();
+        });
+    </script>
+}

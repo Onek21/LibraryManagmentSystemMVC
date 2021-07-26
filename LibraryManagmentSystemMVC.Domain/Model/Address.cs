@@ -14,6 +14,7 @@ namespace LibraryManagmentSystemMVC.Domain.Model
         public string Street { get; set; }
         public string HouseNumber { get; set; }
         public int CustomerId { get; set; }
+        public bool IsActive { get; set; }
         public virtual Customer Customer { get; set; }
     }
 }

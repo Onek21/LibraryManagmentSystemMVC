@@ -16,6 +16,7 @@ namespace LibraryManagmentSystemMVC.Domain.Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int ReservationStateId { get; set; }
+        public bool IsActive { get; set; }
         public ReservationState ReservationState { get; set; }
     }
 }

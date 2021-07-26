@@ -18,6 +18,11 @@ namespace LibraryManagmentSystemMVC.Domain.Interfaces
         int AddGenre(Genre genre);
         IQueryable<Author> GetAllAuthors();
         int AddAuthor(Author author);
-
+        Author GetAuthorById(int authorId);
+        void EditAuthor(Author author);
+        void DeleteAuthor(Author author);
+        void DeleteGenre(Genre genre);
+        Genre GetGenreById(int id);
+        void EditGenre(Genre genre);
     }
 }

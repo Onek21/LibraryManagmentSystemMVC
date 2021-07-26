@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LibraryManagmentSystemMVC.Application.ViewModel.AuthorVm.AuthorsForListVm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="AddAuthor">Create New</a>
+</p>
+<table class="table" id="authorTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+               Nazwa
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditAuthor", new { item.Id }) |
+                @Html.ActionLink("Details", "Details", new { item.Id }) |
+                @Html.ActionLink("Delete", "DeleteAuthor", new { item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts{ 
+<script>
+    $(document).ready(function () {
+        $('#authorTable').DataTable();
+    });
+</script>
+}

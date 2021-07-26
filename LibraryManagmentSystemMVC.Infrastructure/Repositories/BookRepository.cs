@@ -1,5 +1,6 @@
 ﻿using LibraryManagmentSystemMVC.Domain.Interfaces;
 using LibraryManagmentSystemMVC.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,13 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
 
         public Book GetBookById(int bookId)
         {
-            var book = _context.Books.Find(bookId);
+            var book = _context.Books
+                .Include(bookauthors => bookauthors.BookAuthors)
+                .ThenInclude(authors => authors.Author)
+                .Include(bookgeneres => bookgeneres.BookGeners)
+                .ThenInclude(geners => geners.Genre)
+                .FirstOrDefault(x => x.Id == bookId);
+            //var book = _context.Books.Find(bookId);
             return book;
         }
 
@@ -77,6 +84,50 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
             _context.Authors.Add(author);
             _context.SaveChanges();
             return author.Id;
+        }
+
+        public Author GetAuthorById(int authorId)
+        {
+            var author = _context.Authors
+                .Include(bookauthors => bookauthors.BookAuthors)
+                .ThenInclude(book => book.Book)
+                .FirstOrDefault(x => x.Id == authorId);
+            return author;
+        }
+
+        public void EditAuthor(Author author)
+        {
+            _context.Attach(author);
+            _context.Entry(author).Property("FirstName").IsModified = true;
+            _context.Entry(author).Property("LastName").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public void DeleteAuthor(Author author)
+        {
+            _context.Attach(author);
+            _context.Entry(author).Property("IsActive").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public void DeleteGenre(Genre genre)
+        {
+            _context.Attach(genre);
+            _context.Entry(genre).Property("IsActive").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public Genre GetGenreById(int id)
+        {
+            var genre =_context.Genres.Find(id);
+            return genre;
+        }
+
+        public void EditGenre(Genre genre)
+        {
+            _context.Attach(genre);
+            _context.Entry(genre).Property("Name").IsModified = true;
+            _context.SaveChanges();
         }
     }
 }
