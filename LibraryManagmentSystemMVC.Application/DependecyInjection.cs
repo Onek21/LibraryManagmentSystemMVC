@@ -17,8 +17,6 @@ namespace LibraryManagmentSystemMVC.Application
         {
             services.AddTransient<IBookService, BookService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddTransient<IAuthorService, AuthorService>();
-            services.AddTransient<IGenreService, GenreService>();
             return services;
         }
     }

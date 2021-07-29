@@ -10,20 +10,20 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
 {
     public class GenreController : Controller
     {
-        private readonly IGenreService _genreService;
-        public GenreController(IGenreService genreService)
+        private readonly IBookService _bookService;
+        public GenreController(IBookService bookService)
         {
-            _genreService = genreService;
+            _bookService = bookService;
         }
         public IActionResult Index()
         {
-            var model = _genreService.GetActiveGenres();
+            var model = _bookService.GetActiveGenres();
             return View(model);
         }
         [HttpGet]
         public IActionResult EditGenre(int id)
         {
-            var model = _genreService.GetGenreForUpdate(id);
+            var model = _bookService.GetGenreForUpdate(id);
             return View(model);
         }
         [HttpPost]
@@ -31,7 +31,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                _genreService.UpdateGenre(newGenreVm);
+                _bookService.UpdateGenre(newGenreVm);
                 return RedirectToAction("Index");
             }
             return View(newGenreVm);
@@ -46,7 +46,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                _genreService.AddGenre(newGenreVm);
+                _bookService.AddGenre(newGenreVm);
                 return RedirectToAction("Index");
             }
             return View(newGenreVm);
@@ -55,7 +55,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                _genreService.DeleteGenre(newGenreVm);
+                _bookService.DeleteGenre(newGenreVm);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

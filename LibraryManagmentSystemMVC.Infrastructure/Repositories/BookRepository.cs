@@ -25,20 +25,19 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
             return book.Id;
         }
 
-        public void DeleteBook(int bookId)
+        public void DeleteBook(Book book)
         {
-            var book = _context.Books.Find(bookId);
-
-            if(book != null)
-            {
-                _context.Books.Remove(book);
-                _context.SaveChanges();
-            }
+            _context.Attach(book);
+            _context.Entry(book).Property("IsActive").IsModified = true;
+            _context.SaveChanges();
         }
 
         public void EditBook(Book book)
         {
-            _context.Books.Update(book);
+            _context.Attach(book);
+            _context.Entry(book).Property("Name").IsModified = true;
+            _context.Entry(book).Property("PublishingHouse").IsModified = true;
+            _context.Entry(book).Property("RealseDate").IsModified = true;
             _context.SaveChanges();
         }
 
@@ -127,6 +126,38 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
         {
             _context.Attach(genre);
             _context.Entry(genre).Property("Name").IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public void DeleteBookGenreById(int id)
+        {
+            var model = _context.BookGenre.FirstOrDefault(x => x.BookId == id);
+            if(model != null)
+            {
+                _context.BookGenre.Remove(model);
+                _context.SaveChanges();
+            }
+        }
+
+        public void DeleteBookAuthorById(int id)
+        {
+            var model = _context.BookAuthor.FirstOrDefault(x => x.BookId == id);
+            if (model != null)
+            {
+                _context.BookAuthor.Remove(model);
+                _context.SaveChanges();
+            }
+        }
+
+        public void AddBookAuthors(BookAuthor bookauthor)
+        {
+            _context.BookAuthor.Add(bookauthor);
+            _context.SaveChanges();
+        }
+
+        public void AddBookGenre(BookGenre bookgenre)
+        {
+            _context.BookGenre.Add(bookgenre);
             _context.SaveChanges();
         }
     }

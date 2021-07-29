@@ -11,28 +11,28 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
 {
     public class AuthorController : Controller
     {
-        private readonly IAuthorService _authorService;
+        private readonly IBookService _bookService;
 
-        public AuthorController(IAuthorService authorService)
+        public AuthorController(IBookService bookService)
         {
-            _authorService = authorService;
+            _bookService = bookService;
         }
         public IActionResult Index()
         {
-            var model = _authorService.GetAllActiveAuthors();
+            var model = _bookService.GetAllActiveAuthors();
             return View(model);
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var author = _authorService.GetAuthorDetail(id);
+            var author = _bookService.GetAuthorDetail(id);
             return View(author);
         }
         [HttpGet]
         public IActionResult EditAuthor(int id)
         {
-            var author = _authorService.GetAuthorForEdit(id);
+            var author = _bookService.GetAuthorForEdit(id);
             return View(author);
         }
 
@@ -41,7 +41,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                _authorService.UpdateAuthor(authorVm);
+                _bookService.UpdateAuthor(authorVm);
                 return RedirectToAction("Index");
             }
             return View(authorVm);
@@ -56,7 +56,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                var id = _authorService.AddAuthor(model);
+                var id = _bookService.AddAuthor(model);
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -64,7 +64,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
 
         public IActionResult DeleteAuthor(NewAuthorVm model)
         {
-            _authorService.DeleteAuthor(model);
+            _bookService.DeleteAuthor(model);
             return RedirectToAction("Index");
         }
     }

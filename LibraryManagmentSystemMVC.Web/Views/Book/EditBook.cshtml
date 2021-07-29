@@ -1,0 +1,59 @@
+﻿@model LibraryManagmentSystemMVC.Application.ViewModel.BookVm.NewBookVm
+
+@{
+    ViewData["Title"] = "EditBook";
+}
+
+<h1>EditBook</h1>
+
+<h4>NewBookVm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditBook">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PublishingHouse" class="control-label"></label>
+                <input asp-for="PublishingHouse" class="form-control" />
+                <span asp-validation-for="PublishingHouse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RealseDate" class="control-label"></label>
+                <input asp-for="RealseDate" class="form-control" />
+                <span asp-validation-for="RealseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorId" class="control-label"></label>
+                <select class="js-example-basic-multiple form-control" asp-for="AuthorId" asp-items="@(new SelectList(ViewBag.authorsList,"Id","Name"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="GenresId" class="control-label"></label>
+                <select class="js-example-basic-multiple form-control" asp-for="GenresId" asp-items="@(new SelectList(ViewBag.genreList,"Id","Name"))"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2();
+    });
+</script>
+}
