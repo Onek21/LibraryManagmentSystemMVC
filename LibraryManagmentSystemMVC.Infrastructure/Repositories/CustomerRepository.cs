@@ -1,5 +1,6 @@
 ﻿using LibraryManagmentSystemMVC.Domain.Interfaces;
 using LibraryManagmentSystemMVC.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,19 +31,15 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public void DeleteCustomer(int customerId)
+        public void DeleteCustomer(Customer customer)
         {
-            var customer = _context.Customers.Find(customerId);
-            if(customer != null)
-            {
-                _context.Customers.Remove(customer);
-                _context.SaveChanges();
-            }
+            
         }
 
         public IQueryable<Customer> GetAllCustomers()
         {
-            var customers = _context.Customers;
+            var customers = _context.Customers
+                .Include(addreesses => addreesses.Addresses);
             return customers;
         }
 

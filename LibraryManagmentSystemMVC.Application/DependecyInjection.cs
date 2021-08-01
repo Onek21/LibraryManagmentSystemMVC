@@ -16,6 +16,7 @@ namespace LibraryManagmentSystemMVC.Application
         public static IServiceCollection AddAplication(this IServiceCollection services)
         {
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<ICustomerService, CustomerService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             return services;
         }
