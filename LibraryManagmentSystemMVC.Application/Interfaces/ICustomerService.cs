@@ -11,11 +11,10 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
     {
         List<CustomerForListVm> GetActiveCustomers();
         int AddCustomer(NewCustomerVm newCustomerVm);
-        void EditCustomer(NewCustomerVm newCustomerVm);
+        void EditCustomer(CustomerForEditVm customerForEditVm);
         void DeleteCustomer(NewCustomerVm newCustomerVm);
         CustomerDetailVm GetCustomerDetail(int id);
-
-        
-
+        CustomerForEditVm GetCustomerForEdit(int id);
+        void EditAddress(List<NewAddressVm> newAddressVms);
     }
 }

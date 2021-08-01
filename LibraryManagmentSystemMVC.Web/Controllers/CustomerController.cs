@@ -40,6 +40,26 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
                 return View(newCustomerVm);
             }
         }
+        [HttpGet]
+        public IActionResult EditCustomer(int id)
+        {
+            var customer = _custService.GetCustomerForEdit(id);
+            return View(customer);
+        }
+        [HttpPost]
+        public IActionResult EditCustomer(CustomerForEditVm customerForEditVm)
+        {
+            if (ModelState.IsValid) 
+            {
+                _custService.EditCustomer(customerForEditVm);
+                _custService.EditAddress(customerForEditVm.Addresses);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(customerForEditVm);
+            }
+        }
 
     }
 }

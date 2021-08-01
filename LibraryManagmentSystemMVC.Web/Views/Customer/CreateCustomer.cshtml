@@ -60,13 +60,13 @@
                 <span asp-validation-for="Addresses[0].HouseNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input id="AddButton" type="button" value="Nowy adres" />
+                <input id="AddButton" type="button" value="New address" class="btn btn-dark" />
             </div>
             <div id="TextBoxContainer">
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary p-1" />
             </div>
         </form>
     </div>
@@ -86,20 +86,28 @@
             var div = $("<div />");
             var value = "";
 
-            var countryBox = $("<input />").attr("type", "textbox").attr("name", "Addresses[" + i + "].Country");
-            var cityBox = $("<input />").attr("type", "textbox").attr("name", "Addresses[" + i + "].City");
-            var streetBox = $("<input />").attr("type", "textbox").attr("name", "Addresses[" + i + "].Street");
-            var houseNumberBox = $("<input />").attr("type", "textbox").attr("name", "Addresses[" + i + "].HouseNumber   ");
+            var country = $("<label>Country</label>");
+            var countryBox = $("<input class= 'form-control' />").attr("type", "textbox").attr("name", "Addresses[" + i + "].Country");
+            var city = $("<label>City</label>");
+            var cityBox = $("<input class ='form-control'/>").attr("type", "textbox").attr("name", "Addresses[" + i + "].City");
+            var street = $("<label>Street</label>");
+            var streetBox = $("<input class = 'form-control'/>").attr("type", "textbox").attr("name", "Addresses[" + i + "].Street");
+            var houseNumber = $("<label>House number</label>")
+            var houseNumberBox = $("<input class = 'form-control'/>").attr("type", "textbox").attr("name", "Addresses[" + i + "].HouseNumber");
 
             countryBox.val(value);
             cityBox.val(value);
             streetBox.val(value);
             houseNumberBox.val(value);
+            div.append(country);
             div.append(countryBox);
+            div.append(city);
             div.append(cityBox);
+            div.append(street);
             div.append(streetBox);
+            div.append(houseNumber);
             div.append(houseNumberBox);
-            var button = $("<input />").attr("type", "button").attr("value", "Remove");
+            var button = $("<input class='btn btn-secondary mt-1 mb-1'/>").attr("type", "button").attr("value", "Remove");
             button.attr("onclick", "RemoveTextBox(this)");
             div.append(button);
             $("#TextBoxContainer").append(div);
@@ -108,7 +116,7 @@
         });
     });
 
-    function RemoveTextButton(button) {
+    function RemoveTextBox(button) {
         $(button).parent().remove();
     }
 </script>

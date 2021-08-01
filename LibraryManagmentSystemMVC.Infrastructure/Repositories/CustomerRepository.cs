@@ -27,7 +27,11 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
 
         public void UpdateCustomer(Customer customer)
         {
-            _context.Customers.Update(customer);
+            _context.Attach(customer);
+            _context.Entry(customer).Property("FirstName").IsModified = true;
+            _context.Entry(customer).Property("LastName").IsModified = true;
+            _context.Entry(customer).Property("PhoneNumber").IsModified = true;
+            _context.Entry(customer).Property("Email").IsModified = true;
             _context.SaveChanges();
         }
 
@@ -45,10 +49,21 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
 
         public Customer GetCustomerById(int customerId)
         {
-            var customer = _context.Customers.Find(customerId);
+            var customer = _context.Customers
+                .Include(addresses => addresses.Addresses)
+                .FirstOrDefault(x => x.Id == customerId);
             return customer;
         }
 
-        
+        public void UpdateAddress(Address address)
+        {
+            _context.Attach(address);
+            _context.Entry(address).Property("Country").IsModified = true;
+            _context.Entry(address).Property("City").IsModified = true;
+            _context.Entry(address).Property("Street").IsModified = true;
+            _context.Entry(address).Property("HouseNumber").IsModified = true;
+            _context.Entry(address).Property("IsActive").IsModified = true;
+            _context.SaveChanges();
+        }
     }
 }

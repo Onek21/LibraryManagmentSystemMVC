@@ -14,5 +14,6 @@ namespace LibraryManagmentSystemMVC.Domain.Interfaces
         void DeleteCustomer(Customer customer);
         IQueryable<Customer> GetAllCustomers();
         Customer GetCustomerById(int customerId);
+        void UpdateAddress(Address address);
     }
 }
