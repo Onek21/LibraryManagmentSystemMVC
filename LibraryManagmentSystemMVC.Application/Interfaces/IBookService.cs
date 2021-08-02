@@ -1,5 +1,6 @@
 ﻿using LibraryManagmentSystemMVC.Application.ViewModel.AuthorVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.BookVm;
+using LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.GenreVm;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
         List<BookForListVm> GetAllActiveBooksForList();
         int AddBook(NewBookVm newBookVm);
         BookDetailsVm BookDetails(int id);
-
+        List<DocumentForListVm> GetDocumentsForList();
         List<GenreForListVm> GetActiveGenres();
         NewGenreVm GetGenreForUpdate(int id);
         int AddGenre(NewGenreVm newGenreVm);
@@ -25,10 +26,12 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
         AuthorDetailVm GetAuthorDetail(int id);
         NewAuthorVm GetAuthorForEdit(int id);
         void UpdateAuthor(NewAuthorVm model);
+        int AddDocument(NewDocumentVm newDocumentVm);
         int AddAuthor(NewAuthorVm newAuthorVm);
         void DeleteAuthor(NewAuthorVm newAuthorVm);
         void DeleteBook(NewBookVm newBookVm);
         object GetBookToEdit(int id);
+        DocumentDetailVm GetDocumentById(int id);
         void EditBook(NewBookVm newBookVm);
     }
 }

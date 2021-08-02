@@ -1,0 +1,56 @@
+﻿@model IEnumerable<LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm.DocumentForListVm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateDocument">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentNumber)
+            </td>
+                @if(item.Type == 1)
+                {
+                    <td>Przyjęcie</td>
+                }
+                else
+                {
+                    <td>Utylizacja</td>
+                }
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -20,7 +20,7 @@ namespace LibraryManagmentSystemMVC.Infrastructure
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<ReservationState> ReservationStates { get; set; }
-
+        public DbSet<Document> Documents { get; set; }
 
         public Context(DbContextOptions options) : base(options)
         {
@@ -55,6 +55,7 @@ namespace LibraryManagmentSystemMVC.Infrastructure
             builder.Entity<BookGenre>()
                 .HasOne<Genre>(it => it.Genre).WithMany(i => i.BookGenres)
                 .HasForeignKey(it => it.GenreId);
+
         }
     }
 }

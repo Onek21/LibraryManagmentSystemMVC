@@ -160,5 +160,36 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
             _context.BookGenre.Add(bookgenre);
             _context.SaveChanges();
         }
+
+        public IQueryable<Document> GetAllDocuments()
+        {
+            var model = _context.Documents
+                 .Include(books => books.Book);
+            return model;
+        }
+
+        public int AddDocument(Document document)
+        {
+            _context.Documents.Add(document);
+            _context.SaveChanges();
+            return document.Id;
+        }
+
+        public void UpdateBookQuantity(Book book)
+        {
+            _context.Attach(book);
+            _context.Entry(book).Property("Quanity").IsModified = true;
+            _context.Entry(book).Property("QuantityOnState").IsModified = true;
+            _context.SaveChanges();
+
+        }
+
+        public Document GetDocumentById(int id)
+        {
+            var model = _context.Documents
+                .Include(books => books.Book)
+                .FirstOrDefault(x => x.Id == id);
+            return model;
+        }
     }
 }

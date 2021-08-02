@@ -60,6 +60,16 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
                 return View(customerForEditVm);
             }
         }
-
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var customer = _custService.GetCustomerDetail(id);
+            return View(customer);
+        }
+        public IActionResult DeleteCustomer(CustomerForEditVm customerForEditVm)
+        {
+            _custService.DeleteCustomer(customerForEditVm);
+            return RedirectToAction("Index");
+        }
     }
 }

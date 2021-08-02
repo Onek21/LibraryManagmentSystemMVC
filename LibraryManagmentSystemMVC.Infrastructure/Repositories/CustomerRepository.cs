@@ -37,7 +37,9 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
 
         public void DeleteCustomer(Customer customer)
         {
-            
+            _context.Attach(customer);
+            _context.Entry(customer).Property("IsActive").IsModified = true;
+            _context.SaveChanges();
         }
 
         public IQueryable<Customer> GetAllCustomers()

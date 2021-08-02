@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using LibraryManagmentSystemMVC.Application.Interfaces;
 using LibraryManagmentSystemMVC.Application.ViewModel.AuthorVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.BookVm;
+using LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.GenreVm;
 using LibraryManagmentSystemMVC.Domain.Interfaces;
 using LibraryManagmentSystemMVC.Domain.Model;
@@ -241,5 +242,52 @@ namespace LibraryManagmentSystemMVC.Application.Services
             }
             _bookRepo.EditBook(book);
         }
+
+        public List<DocumentForListVm> GetDocumentsForList()
+        {
+            var documents = _bookRepo.GetAllDocuments().ProjectTo<DocumentForListVm>(_mapper.ConfigurationProvider).ToList();
+            return documents;
+        }
+
+        public int AddDocument(NewDocumentVm newDocumentVm)
+        {
+            var document = _mapper.Map<Document>(newDocumentVm);
+
+            var year = DateTime.Now.Year;
+            var lastId = _bookRepo.GetAllDocuments().OrderByDescending(p => p.Id).Select(r => r.Id).FirstOrDefault();
+            if (lastId == 0)
+            {
+                document.DocumentNumber = $"{year}/1";
+            }
+            else
+            {
+                lastId += 1;
+                document.DocumentNumber = $"{year}/{lastId}";
+            }
+            if(document.Type == 1)
+            {
+                var book = _bookRepo.GetBookById(document.BookId);
+                book.Quanity  += document.Quantity;
+                book.QuantityOnState += document.Quantity;
+                _bookRepo.UpdateBookQuantity(book);
+            }
+            else
+            {
+                var book = _bookRepo.GetBookById(document.BookId);
+                book.Quanity -= document.Quantity;
+                book.QuantityOnState -= document.Quantity;
+                _bookRepo.UpdateBookQuantity(book);
+            }
+            var id = _bookRepo.AddDocument(document);
+            return id;
+        }
+
+        public DocumentDetailVm GetDocumentById(int id)
+        {
+            var document = _bookRepo.GetDocumentById(id);
+            var documentVm = _mapper.Map<DocumentDetailVm>(document);
+            return documentVm;
+        }
+
     }
 }

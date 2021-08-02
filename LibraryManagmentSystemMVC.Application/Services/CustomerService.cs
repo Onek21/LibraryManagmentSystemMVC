@@ -41,9 +41,11 @@ namespace LibraryManagmentSystemMVC.Application.Services
             return id;
         }
 
-        public void DeleteCustomer(NewCustomerVm newCustomerVm)
+        public void DeleteCustomer(CustomerForEditVm customerForEditVm)
         {
-            throw new NotImplementedException();
+            var customer = _mapper.Map<Customer>(customerForEditVm);
+            customer.IsActive = false;
+            _custRepo.DeleteCustomer(customer);
         }
 
         public void EditAddress(List<NewAddressVm> newAddressVms)
@@ -69,7 +71,28 @@ namespace LibraryManagmentSystemMVC.Application.Services
 
         public CustomerDetailVm GetCustomerDetail(int id)
         {
-            throw new NotImplementedException();
+            var customer = _custRepo.GetCustomerById(id);
+            var customerVm = _mapper.Map<CustomerDetailVm>(customer);
+            customerVm.Addresses = new List<NewAddressVm>();
+            foreach (var item in customer.Addresses)
+            {
+                var add = new NewAddressVm()
+                {
+                    Id = item.Id,
+                    CustomerId = item.CustomerId,
+                    Country = item.Country,
+                    City = item.City,
+                    Street = item.Street,
+                    HouseNumber = item.HouseNumber,
+                    IsActive = item.IsActive
+                };
+
+                if (add.IsActive == true)
+                {
+                    customerVm.Addresses.Add(add);
+                }
+            }
+            return customerVm;
         }
 
         public CustomerForEditVm GetCustomerForEdit(int id)

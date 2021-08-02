@@ -28,5 +28,9 @@ namespace LibraryManagmentSystemMVC.Domain.Interfaces
         void DeleteBookAuthorById(int id);
         void AddBookAuthors(BookAuthor bookauthor);
         void AddBookGenre(BookGenre bookgenre);
+        IQueryable<Document> GetAllDocuments();
+        int AddDocument(Document document);
+        void UpdateBookQuantity(Book book);
+        Document GetDocumentById(int id);
     }
 }
