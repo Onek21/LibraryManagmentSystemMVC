@@ -19,6 +19,7 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
         List<GenreForListVm> GetActiveGenres();
         NewGenreVm GetGenreForUpdate(int id);
         int AddGenre(NewGenreVm newGenreVm);
+        List<BookForListVm> GetBooksWithPositiveAmount();
         void UpdateGenre(NewGenreVm newGenreVm);
         void DeleteGenre(NewGenreVm newGenreVm);
 

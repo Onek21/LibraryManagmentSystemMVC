@@ -88,13 +88,15 @@ namespace LibraryManagmentSystemMVC.Application.Services
             authorVm.Books = new List<BookForListVm>();
             foreach(var item in author.BookAuthors)
             {
-                var book = new BookForListVm()
-                {
-                    Id = item.Book.Id,
-                    Name = item.Book.Name
-                };
-                authorVm.Books.Add(book);
-                
+                if(item.Book.IsActive == true)
+                { 
+                    var book = new BookForListVm()
+                    {
+                        Id = item.Book.Id,
+                        Name = item.Book.Name
+                    };
+                    authorVm.Books.Add(book);
+                }
             };
             return authorVm;
         }
@@ -289,5 +291,10 @@ namespace LibraryManagmentSystemMVC.Application.Services
             return documentVm;
         }
 
+        public List<BookForListVm> GetBooksWithPositiveAmount()
+        {
+            var books = _bookRepo.GetAllBooks().Where(p => p.IsActive == true).Where(p => p.Quanity > 0).ProjectTo<BookForListVm>(_mapper.ConfigurationProvider).ToList();
+            return books;
+        }
     }
 }

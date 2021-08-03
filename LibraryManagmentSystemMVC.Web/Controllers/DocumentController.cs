@@ -23,7 +23,7 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         [HttpGet]
         public IActionResult CreateDocument()
         {
-            ViewBag.books = _bookService.GetAllActiveBooksForList();
+            ViewBag.books = _bookService.GetBooksWithPositiveAmount();
             return View(new NewDocumentVm());
         }
         [HttpPost]
