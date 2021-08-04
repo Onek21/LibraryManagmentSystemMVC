@@ -13,9 +13,9 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
         List<ReservationForListVm> GetCanceledReservations();
         List<ReservationForListVm> GetCompletedReservations();
         int AddReservation(NewReservationVm newReservationVm);
-        void CancelReservation(NewReservationVm newReservationVm);
-        void ExtendReservation(NewReservationVm newReservationVm);
-        void CompleteReservation(NewReservationVm newReservationVm);
+        void CancelReservation(int id);
+        void ExtendReservation(int id);
+        void CompleteReservation(int id);
         ReservationDetailVm ReservationDetail(int id);
         void MarkReservationAsOverTime();
         List<ReservationStateVm> GetReservationStates();

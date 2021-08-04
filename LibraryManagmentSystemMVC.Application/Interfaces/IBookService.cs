@@ -2,6 +2,7 @@
 using LibraryManagmentSystemMVC.Application.ViewModel.BookVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.GenreVm;
+using LibraryManagmentSystemMVC.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
         NewGenreVm GetGenreForUpdate(int id);
         int AddGenre(NewGenreVm newGenreVm);
         List<BookForListVm> GetBooksWithPositiveAmount();
+        List<BookForListVm> GetBooksInStock();
         void UpdateGenre(NewGenreVm newGenreVm);
         void DeleteGenre(NewGenreVm newGenreVm);
 

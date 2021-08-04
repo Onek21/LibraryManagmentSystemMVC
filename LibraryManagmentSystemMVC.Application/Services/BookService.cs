@@ -296,5 +296,11 @@ namespace LibraryManagmentSystemMVC.Application.Services
             var books = _bookRepo.GetAllBooks().Where(p => p.IsActive == true).Where(p => p.Quanity > 0).ProjectTo<BookForListVm>(_mapper.ConfigurationProvider).ToList();
             return books;
         }
+
+        public List<BookForListVm> GetBooksInStock()
+        {
+            var books = _bookRepo.GetAllBooks().Where(p => p.IsActive == true).Where(p => p.QuantityOnState > 0).ProjectTo<BookForListVm>(_mapper.ConfigurationProvider).ToList();
+            return books;
+        }
     }
 }

@@ -32,5 +32,6 @@ namespace LibraryManagmentSystemMVC.Domain.Interfaces
         int AddDocument(Document document);
         void UpdateBookQuantity(Book book);
         Document GetDocumentById(int id);
+        void UpdateQuantityOnState(Book book);
     }
 }

@@ -28,9 +28,8 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         [HttpGet]
         public IActionResult CreateReservation()
         {
-            ViewBag.books = _bookService.GetAllActiveBooksForList();
+            ViewBag.books = _bookService.GetBooksInStock();
             ViewBag.customers = _custService.GetActiveCustomers();
-            ViewBag.states = _reseravtionService.GetReservationStates();
             return View(new NewReservationVm());
         }
         [HttpPost]
@@ -45,6 +44,21 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
             {
                 return View(newReservationVm);
             }
+        }
+        public IActionResult ExtendReservation(int id)
+        {
+            _reseravtionService.ExtendReservation(id);
+            return RedirectToAction("Index");
+        }
+        public IActionResult CancelReservation(int id)
+        {
+            _reseravtionService.CancelReservation(id);
+            return RedirectToAction("Index");
+        }
+        public IActionResult MarkReservationAsComplete(int id)
+        {
+            _reseravtionService.CompleteReservation(id);
+            return RedirectToAction("Index");
         }
     }
 }

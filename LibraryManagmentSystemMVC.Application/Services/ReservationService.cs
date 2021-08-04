@@ -15,39 +15,54 @@ namespace LibraryManagmentSystemMVC.Application.Services
     public class ReservationService : IReservationService
     {
         private readonly IReservationRepository _reservationRepo;
+        private readonly IBookRepository _bookRepo;
         private readonly IMapper _mapper;
 
-        public ReservationService(IReservationRepository reservationRepository, IMapper mapper)
+        public ReservationService(IReservationRepository reservationRepository, IBookRepository bookRepository ,IMapper mapper)
         {
             _reservationRepo = reservationRepository;
+            _bookRepo = bookRepository;
             _mapper = mapper;
         }
 
         public int AddReservation(NewReservationVm newReservationVm)
         {
             var reservation = _mapper.Map<Reservation>(newReservationVm);
+            reservation.ReservationStateId = 2;
+            reservation.EndDate = DateTime.Today.AddDays(30);
+            reservation.IsActive = true;
             _reservationRepo.AddBookReservation(reservation);
+            var book = _bookRepo.GetBookById(reservation.BookId);
+            book.QuantityOnState -= 1;
+            _bookRepo.UpdateQuantityOnState(book);
             return reservation.Id;
         }
 
-        public void CancelReservation(NewReservationVm newReservationVm)
+        public void CancelReservation(int id)
         {
-            var reservation = _mapper.Map<Reservation>(newReservationVm);
+            var reservation = _reservationRepo.GetBookReservationById(id);
             reservation.ReservationStateId = 1;
+            var book = _bookRepo.GetBookById(reservation.BookId);
+            book.QuantityOnState += 1;
+            _bookRepo.UpdateQuantityOnState(book);
             _reservationRepo.UpdateReservationStatus(reservation);
         }
 
-        public void CompleteReservation(NewReservationVm newReservationVm)
+        public void CompleteReservation(int id)
         {
-            var reservation = _mapper.Map<Reservation>(newReservationVm);
+            var reservation = _reservationRepo.GetBookReservationById(id);
             reservation.ReservationStateId = 5;
+            var book = _bookRepo.GetBookById(reservation.BookId);
+            book.QuantityOnState += 1;
+            _bookRepo.UpdateQuantityOnState(book);
             _reservationRepo.UpdateReservationStatus(reservation);
         }
 
-        public void ExtendReservation(NewReservationVm newReservationVm)
+        public void ExtendReservation(int id)
         {
-            var reservation = _mapper.Map<Reservation>(newReservationVm);
+            var reservation = _reservationRepo.GetBookReservationById(id);
             reservation.ReservationStateId = 4;
+            reservation.EndDate = reservation.EndDate.AddDays(30);
             _reservationRepo.UpdateReservationStatus(reservation);
         }
 
@@ -65,7 +80,7 @@ namespace LibraryManagmentSystemMVC.Application.Services
 
         public List<ReservationForListVm> GetCurrnetReservations()
         {
-            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2).ProjectTo<ReservationForListVm>(_mapper.ConfigurationProvider).ToList();
+            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2 || x.ReservationStateId == 4).ProjectTo<ReservationForListVm>(_mapper.ConfigurationProvider).ToList();
             return reservations;
         }
 
@@ -77,11 +92,11 @@ namespace LibraryManagmentSystemMVC.Application.Services
 
         public void MarkReservationAsOverTime()
         {
-            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2).ProjectTo<Reservation>(_mapper.ConfigurationProvider).ToList();
+            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2).ToList();
 
             foreach(var item in reservations)
             {
-                if(item.EndDate > DateTime.Now)
+                if(item.EndDate < DateTime.Now)
                 {
                     item.ReservationStateId = 3;
                     _reservationRepo.UpdateReservationStatus(item);

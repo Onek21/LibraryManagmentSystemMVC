@@ -20,7 +20,8 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            //return View();
+            return RedirectToAction("Index", "Reservation", new { area = "" });
         }
 
         public IActionResult Privacy()

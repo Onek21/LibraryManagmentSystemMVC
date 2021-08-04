@@ -55,7 +55,13 @@
                 @Html.DisplayFor(modelItem => item.ReservationStateName)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { item.Id }) 
+                @Html.ActionLink("Przedłuż rezerwację", "ExtendReservation", new { item.Id }) |
+            </td>
+            <td>
+                @Html.ActionLink("Anuluj rezerwację", "CancelReservation", new { item.Id }) |
+            </td>
+            <td>
+                @Html.ActionLink("Zakończ rezerwację", "MarkReservationAsComplete", new { item.Id }) 
             </td>
         </tr>
 }

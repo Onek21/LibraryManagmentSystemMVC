@@ -13,34 +13,20 @@
         <form asp-action="CreateReservation">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+                <input type="hidden" asp-for="Id" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="BookId" class="control-label"></label>
-                <input asp-for="BookId" class="form-control" />
-                <span asp-validation-for="BookId" class="text-danger"></span>
+                <select class="js-example-basic-single form-control" asp-for="BookId" asp-items="@(new SelectList(ViewBag.books,"Id","Name"))"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CustomerId" class="control-label"></label>
-                <input asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                <select class="js-example-basic-single form-control" asp-for="CustomerId" asp-items="@(new SelectList(ViewBag.customers,"Id","Name"))"></select>
             </div>
             <div class="form-group">
                 <label asp-for="StartDate" class="control-label"></label>
-                <input asp-for="StartDate" class="form-control" />
+                <input asp-for="StartDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
-                <span asp-validation-for="EndDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReservationStateId" class="control-label"></label>
-                <input asp-for="ReservationStateId" class="form-control" />
-                <span asp-validation-for="ReservationStateId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

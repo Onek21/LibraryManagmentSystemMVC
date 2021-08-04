@@ -191,5 +191,12 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
                 .FirstOrDefault(x => x.Id == id);
             return model;
         }
+
+        public void UpdateQuantityOnState(Book book)
+        {
+            _context.Attach(book);
+            _context.Entry(book).Property("QuantityOnState").IsModified = true;
+            _context.SaveChanges();
+        }
     }
 }
