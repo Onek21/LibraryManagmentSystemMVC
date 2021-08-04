@@ -30,9 +30,6 @@ namespace LibraryManagmentSystemMVC.Infrastructure
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<ReservationState>()
-                .HasOne(a => a.Reservation).WithOne(b => b.ReservationState)
-                .HasForeignKey<Reservation>(f => f.ReservationStateId);
 
             builder.Entity<BookAuthor>()
                 .HasKey(it => new { it.BookId, it.AuthorId });
