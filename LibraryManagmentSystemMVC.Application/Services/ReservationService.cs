@@ -42,6 +42,7 @@ namespace LibraryManagmentSystemMVC.Application.Services
         {
             var reservation = _reservationRepo.GetBookReservationById(id);
             reservation.ReservationStateId = 1;
+            reservation.EndDate = DateTime.Today;
             var book = _bookRepo.GetBookById(reservation.BookId);
             book.QuantityOnState += 1;
             _bookRepo.UpdateQuantityOnState(book);
@@ -52,6 +53,7 @@ namespace LibraryManagmentSystemMVC.Application.Services
         {
             var reservation = _reservationRepo.GetBookReservationById(id);
             reservation.ReservationStateId = 5;
+            reservation.EndDate = DateTime.Today;
             var book = _bookRepo.GetBookById(reservation.BookId);
             book.QuantityOnState += 1;
             _bookRepo.UpdateQuantityOnState(book);
@@ -80,7 +82,7 @@ namespace LibraryManagmentSystemMVC.Application.Services
 
         public List<ReservationForListVm> GetCurrnetReservations()
         {
-            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2 || x.ReservationStateId == 4).ProjectTo<ReservationForListVm>(_mapper.ConfigurationProvider).ToList();
+            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2 || x.ReservationStateId == 4 || x.ReservationStateId == 3).ProjectTo<ReservationForListVm>(_mapper.ConfigurationProvider).ToList();
             return reservations;
         }
 

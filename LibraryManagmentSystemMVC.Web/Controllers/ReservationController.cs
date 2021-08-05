@@ -60,5 +60,15 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
             _reseravtionService.CompleteReservation(id);
             return RedirectToAction("Index");
         }
+        public IActionResult CompletedReservations()
+        {
+            var model = _reseravtionService.GetCompletedReservations();
+            return View(model);
+        }
+        public IActionResult CanceledReservations()
+        {
+            var model = _reseravtionService.GetCanceledReservations();
+            return View(model);
+        }
     }
 }
