@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Lista dokumentów</h3>
 
 <p>
-    <a asp-action="CreateDocument">Create New</a>
+    <input type="button" value="Dodaj" onclick="location.href='@Url.Action("CreateDocument", "Document")'" class="btn btn-primary" />
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered" id="documentTable">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -28,29 +28,30 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocumentNumber)
-            </td>
-                @if(item.Type == 1)
-                {
-                    <td>Przyjęcie</td>
-                }
-                else
-                {
-                    <td>Utylizacja</td>
-                }
-            <td>
-                @Html.DisplayFor(modelItem => item.BookName)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentNumber)
+                </td>
+                <td>@(item.Type == 1 ? "Przyjęcie" : "Utylizacja")</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    <input type="button" value="Szczegóły" onclick="location.href='@Url.Action("Details", "Document", new { id = item.Id })'" class="btn btn-secondary btn-sm" />
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#documentTable').DataTable();
+        });
+    </script>
+}

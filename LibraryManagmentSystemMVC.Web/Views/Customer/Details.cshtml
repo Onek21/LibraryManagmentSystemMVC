@@ -4,51 +4,39 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>CustomerDetailVm</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-    </dl>
+    <h4>Szczegóły</h4>
+    <table class="table table-bordered">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <td>@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <td>@Html.DisplayFor(model => model.FirstName)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <td>@Html.DisplayFor(model => model.LastName)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+            <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <td>@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+    </table>
     <h4>Address</h4>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th scope="col">Country</th>
-                <th scope="col">City</th>
-                <th scope="col">Street</th>
-                <th scope="col">HouseNumber</th>
+                <th scope="col">Kraj</th>
+                <th scope="col">Miasto</th>
+                <th scope="col">Ulica</th>
+                <th scope="col">Numer domu</th>
             </tr>
         </thead>
         @foreach (var item in Model.Addresses)
@@ -66,6 +54,6 @@
         </table>
 </div>
 <div>
-    @Html.ActionLink("Edit", "EditCustomer", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditCustomer", "Customer", new { id = Model.Id })'" class="btn btn-dark btn-sm" /> <br />
+    <a asp-action="Index">Wróc do listy</a>
 </div>

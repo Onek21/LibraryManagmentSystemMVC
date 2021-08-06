@@ -4,57 +4,64 @@
     ViewData["Title"] = "CreateCustomer";
 }
 
-<h1>CreateCustomer</h1>
 
-<h4>NewCustomerVm</h4>
+<h4>Stwórz klienta</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="CreateCustomer">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group row">
                 <input asp-for="Id" type="hidden" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="FirstName" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="LastName" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="PhoneNumber" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="Email" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
             </div>
             <h4>Address</h4>   
-            <div class="form-group">
+            <div class="form-group row">
                 <input asp-for="Addresses[0].Id" type="hidden" />
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="Addresses[0].Country" class="control-label"></label>
                 <input asp-for="Addresses[0].Country" class="form-control" />
                 <span asp-validation-for="Addresses[0].Country" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="Addresses[0].City" class="control-label"></label>
                 <input asp-for="Addresses[0].City" class="form-control" />
                 <span asp-validation-for="Addresses[0].City" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="Addresses[0].Street" class="control-label"></label>
                 <input asp-for="Addresses[0].Street" class="form-control" />
                 <span asp-validation-for="Addresses[0].Street" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label asp-for="Addresses[0].HouseNumber" class="control-label"></label>
                 <input asp-for="Addresses[0].HouseNumber" class="form-control" />
                 <span asp-validation-for="Addresses[0].HouseNumber" class="text-danger"></span>
@@ -66,14 +73,14 @@
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary p-1" />
+                <input type="submit" value="Zapisz" class="btn btn-primary p-1" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {
@@ -83,16 +90,16 @@
     $(document).ready(function () {
         var i = 1;
         $("#AddButton").click(function () {
-            var div = $("<div />");
+            var div = $("<div class='form-group row' />");
             var value = "";
 
-            var country = $("<label>Country</label>");
+            var country = $("<label>Kraj</label>");
             var countryBox = $("<input class= 'form-control' />").attr("type", "textbox").attr("name", "Addresses[" + i + "].Country");
-            var city = $("<label>City</label>");
+            var city = $("<label>Miasto</label>");
             var cityBox = $("<input class ='form-control'/>").attr("type", "textbox").attr("name", "Addresses[" + i + "].City");
-            var street = $("<label>Street</label>");
+            var street = $("<label>Ulica</label>");
             var streetBox = $("<input class = 'form-control'/>").attr("type", "textbox").attr("name", "Addresses[" + i + "].Street");
-            var houseNumber = $("<label>House number</label>")
+            var houseNumber = $("<label>Numer domu</label>")
             var houseNumberBox = $("<input class = 'form-control'/>").attr("type", "textbox").attr("name", "Addresses[" + i + "].HouseNumber");
 
             countryBox.val(value);

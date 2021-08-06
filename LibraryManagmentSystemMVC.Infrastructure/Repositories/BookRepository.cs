@@ -131,22 +131,22 @@ namespace LibraryManagmentSystemMVC.Infrastructure.Repositories
 
         public void DeleteBookGenreById(int id)
         {
-            var model = _context.BookGenre.FirstOrDefault(x => x.BookId == id);
-            if(model != null)
+            var model = _context.BookGenre.Where(x => x.BookId == id);
+            foreach(var item in model)
             {
-                _context.BookGenre.Remove(model);
-                _context.SaveChanges();
+                _context.BookGenre.Remove(item);
             }
+            _context.SaveChanges();
         }
 
         public void DeleteBookAuthorById(int id)
         {
-            var model = _context.BookAuthor.FirstOrDefault(x => x.BookId == id);
-            if (model != null)
+            var model = _context.BookAuthor.Where(x => x.BookId == id);
+            foreach(var item in model)
             {
-                _context.BookAuthor.Remove(model);
-                _context.SaveChanges();
+                _context.BookAuthor.Remove(item);
             }
+            _context.SaveChanges();
         }
 
         public void AddBookAuthors(BookAuthor bookauthor)

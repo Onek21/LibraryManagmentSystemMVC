@@ -4,69 +4,74 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h3>Szczegóły</h3>
 
 <div>
-    <h4>BookDetailsVm</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PublishingHouse)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PublishingHouse)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.RealseDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.RealseDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quanity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quanity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantityOnState)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.QuantityOnState)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BookAuthors)
-        </dt>
-        @foreach (var author in Model.BookAuthors)
-        {
-            <dd class="col-sm-10">
-                @author.Name
-            </dd>
-        }
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BookGeners)
-        </dt>
-        @foreach (var genre in Model.BookGeners)
-        {
-            <dd class="col-sm-10">
-                @genre.Name
-            </dd>
-        }
-    </dl>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <td>@Html.DisplayFor(model => model.Id)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.PublishingHouse)</th>
+                <td>@Html.DisplayFor(model => model.PublishingHouse)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.RealseDate)</th>
+                <td>@Html.DisplayFor(model => model.RealseDate)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Quanity)</th>
+                <td>@Html.DisplayFor(model => model.Quanity)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.QuantityOnState)</th>
+                <td>@Html.DisplayFor(model => model.QuantityOnState)</td>
+            </tr>
+    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.BookAuthors)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var author in Model.BookAuthors)
+                    {
+                        <tr>
+                            <td>@author.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.BookGeners)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var genre in Model.BookGeners)
+                    {
+                        <tr>
+                            <td>@genre.Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <div>
-    @Html.ActionLink("Edit", "EditBook", new { Model.Id}) |
+    <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditBook", "Book", new { id = Model.Id })'" class="btn btn-dark" /> <br />
     <a asp-action="Index">Back to List</a>
 </div>

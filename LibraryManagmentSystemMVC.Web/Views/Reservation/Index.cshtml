@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<LibraryManagmentSystemMVC.Application.ViewModel.ReservationVm.ReservationForListVm>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Aktywne rezerwacje";
 }
 
-<h1>Index</h1>
+<h3>Aktywne rezerwacje</h3>
 
 <p>
-    <a asp-action="CreateReservation">Create New</a>
+    <input type="button" value="Dodaj" onclick="location.href='@Url.Action("CreateReservation", "Reservation")'" class="btn btn-primary" />
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered w-auto small" id="resTable">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -34,36 +34,64 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationStateName)
-            </td>
-            <td>
-                @Html.ActionLink("Przedłuż rezerwację", "ExtendReservation", new { item.Id }) |
-            </td>
-            <td>
-                @Html.ActionLink("Anuluj rezerwację", "CancelReservation", new { item.Id }) |
-            </td>
-            <td>
-                @Html.ActionLink("Zakończ rezerwację", "MarkReservationAsComplete", new { item.Id }) 
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            string statusColor = String.Empty;
+            if(item.ReservationStateName.Equals("W trakcie"))
+            {
+                statusColor = "color: green";
+            }
+            if(item.ReservationStateName.Equals("Po terminie"))
+            {
+                statusColor = "color: red";
+            }
+            if(item.ReservationStateName.Equals("Przedłużona"))
+            {
+                statusColor = "color:  #cc7a00";
+            }
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td style="@statusColor">
+                    <i class="bi bi-dot">@Html.DisplayFor(modelItem => item.ReservationStateName)</i>
+                </td>
+                <td>
+                    <input type="button" value="Przedłuż" onclick="location.href='@Url.Action("ExtendReservation", "Reservation", new { id = item.Id })'" class="btn btn-secondary btn-sm" />
+                    <input type="button" value="Anuluj" onclick="location.href='@Url.Action("CancelReservation", "Reservation",new { id = item.Id }))'" class="btn btn-danger btn-sm" />
+                    <input type="button" value="Zakończ" onclick="location.href='@Url.Action("MarkReservationAsComplete", "Reservation",new { id = item.Id }))'" class="btn btn-success btn-sm" />
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#resTable').DataTable({
+                "columns": [
+                    {"width": "5%"},
+                    {"width": "25%"},
+                    {"width": "15%"},
+                    {"width": "10%"},
+                    {"width": "10%"},
+                    {"width": "10%"},
+                    {"width": "25%"}
+                ]
+            });
+        });
+    </script>
+}

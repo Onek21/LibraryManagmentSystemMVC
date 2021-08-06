@@ -4,42 +4,39 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
 <div>
-    <h4>AuthorDetailVm</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            Books:
-        </dt>
-        @foreach(var item in Model.Books)
+    <h4>Szczegóły</h4>
+    <table class="table table-bordered">
+        <tr>
+            <th width="30%">@Html.DisplayNameFor(model => model.Id)</th>
+            <td>@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+        <tr>
+            <th width="30%">@Html.DisplayNameFor(model => model.FirstName)</th>
+            <td>@Html.DisplayFor(model => model.FirstName)</td>
+        </tr>
+        <tr>
+            <th width="30%">@Html.DisplayNameFor(model => model.LastName)</th>
+            <td>@Html.DisplayFor(model => model.LastName)</td>
+        </tr>
+    </table>
+    <div class="col-sm-6">
+        <table class="table table-bordered">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Books)</th>
+            </tr>
+            @foreach (var item in Model.Books)
             {
-                <dd class="col-sm-10">
-                    @item.Name
-                </dd>
+                <tr>
+                    <td>@item.Name</td>
+                </tr>
             }
-    </dl>
+        </table>
+    </div>
+   
 </div>
 <div>
-    @Html.ActionLink("Edit", "EditAuthor", new { Model.Id }) |
-    <a asp-action="Index">Back to List</a>
+    <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditAuthor", "Author", new { id = Model.Id })'" class="btn btn-dark btn-sm" />
+    <br />
+    <a asp-action="Index">Powrót do listy</a>
 </div>

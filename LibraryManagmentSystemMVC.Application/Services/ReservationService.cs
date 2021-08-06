@@ -18,7 +18,7 @@ namespace LibraryManagmentSystemMVC.Application.Services
         private readonly IBookRepository _bookRepo;
         private readonly IMapper _mapper;
 
-        public ReservationService(IReservationRepository reservationRepository, IBookRepository bookRepository ,IMapper mapper)
+        public ReservationService(IReservationRepository reservationRepository, IBookRepository bookRepository, IMapper mapper)
         {
             _reservationRepo = reservationRepository;
             _bookRepo = bookRepository;
@@ -94,7 +94,7 @@ namespace LibraryManagmentSystemMVC.Application.Services
 
         public void MarkReservationAsOverTime()
         {
-            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2).ToList();
+            var reservations = _reservationRepo.GetReservations().Where(x => x.ReservationStateId == 2 || x.ReservationStateId == 4).ToList();
 
             foreach(var item in reservations)
             {

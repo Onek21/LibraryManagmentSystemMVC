@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Lista gatunków</h3>
 
 <p>
-    <a asp-action="CreateGenre">Create New</a>
+    <input type="button" value="Dodaj" onclick="location.href='@Url.Action("CreateGenre", "Genre")'" class="btn btn-primary" />
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered" id="genreTable">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -22,19 +22,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditGenre", new { item.Id }) |
-                @Html.ActionLink("Delete", "DeleteGenre", new { item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditGenre", "Genre", new { id = item.Id })'" class="btn btn-dark btn-sm" />
+                    <input type="button" value="Usuń" onclick="location.href='@Url.Action("DeleteGenre", "Genre", new { id = item.Id })'" class="btn btn-danger btn-sm" />
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#genreTable').DataTable();
+        });
+    </script>
+}

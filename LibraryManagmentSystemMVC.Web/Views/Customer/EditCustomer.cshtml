@@ -4,36 +4,42 @@
     ViewData["Title"] = "EditCustomer";
 }
 
-<h1>EditCustomer</h1>
-
-<h4>CustomerForEditVm</h4>
+<h4>Edytuj klienta</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="EditCustomer">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input type="hidden" asp-for="Id" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+           <div class="form-group row">
+                <label asp-for="FirstName" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="LastName" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" class="form-control" />
-                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="PhoneNumber" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+            <div class="form-group row">
+                <label asp-for="Email" class="control-label col-sm-2"></label>
+                <div class="col-md-6">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
             </div>
             @for(int i=0; i<Model.Addresses.Count; i++)
             {
@@ -68,14 +74,14 @@
                 </div>
             }
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

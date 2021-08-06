@@ -4,13 +4,10 @@
     ViewData["Title"] = "CompletedReservations";
 }
 
-<h1>CompletedReservations</h1>
+<h3>Zakończone rezerwacje</h3>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table table-striped table-bordered" id="completeTable">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -30,31 +27,39 @@
             <th>
                 @Html.DisplayNameFor(model => model.ReservationStateName)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationStateName)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReservationStateName)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#completeTable').DataTable({
+            });
+        });
+    </script>
+}

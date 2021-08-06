@@ -35,19 +35,19 @@
                     </ul>
                 </li>
                 @*<li class="active">
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="#">Home 1</a>
-                </li>
-                <li>
-                    <a href="#">Home 2</a>
-                </li>
-                <li>
-                    <a href="#">Home 3</a>
-                </li>
-            </ul>
-        </li>*@
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="#">Home 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 3</a>
+                            </li>
+                        </ul>
+                    </li>*@
                 <li>
                     <a asp-area="" asp-controller="Book" asp-action="Index">Books</a>
                 </li>
@@ -69,17 +69,18 @@
 
         <!-- Page Content  -->
         <div id="content">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="bi bi-list"></i>
-                    </button>
-                </div>
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="bi bi-list"></i>
+                </button>
+            </div>
 
             <div class="container">
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
-            </div></div>
+            </div>
+        </div>
     </div>
     @*<header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">

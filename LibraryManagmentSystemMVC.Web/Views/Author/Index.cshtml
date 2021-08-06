@@ -4,19 +4,19 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Lista autorów</h3>
 
 <p>
-    <a asp-action="AddAuthor">Create New</a>
+    <input type="button" value="Dodaj" onclick="location.href='@Url.Action("AddAuthor", "Author")'" class="btn btn-primary" />
 </p>
-<table class="table" id="authorTable">
+<table class="table table-striped table-bordered" id="authorTable">
     <thead class="thead-dark">
         <tr>
             <th>
-                Id
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-               Nazwa
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th></th>
         </tr>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditAuthor", new { item.Id }) |
-                @Html.ActionLink("Details", "Details", new { item.Id }) |
-                @Html.ActionLink("Delete", "DeleteAuthor", new { item.Id })
+                <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditAuthor", "Author", new { id = item.Id })'" class="btn btn-dark btn-sm" />
+                <input type="button" value="Szczegóły" onclick="location.href='@Url.Action("Details", "Author", new { id = item.Id })'" class="btn btn-secondary btn-sm" />
+                <input type="button" value="Usuń" onclick="location.href='@Url.Action("DeleteAuthor", "Author", new { id = item.Id })'" class="btn btn-danger btn-sm" />
             </td>
         </tr>
 }

@@ -4,13 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Lista klientów</h3>
 
 <p>
-    <a asp-action="CreateCustomer">Create New</a>
+    <input type="button" value="Dodaj" onclick="location.href='@Url.Action("CreateCustomer", "Customer")'" class="btn btn-primary" />
 </p>
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered" id="customerTable">
+    <thead class="thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -22,20 +22,28 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditCustomer", new { item.Id }) |
-                @Html.ActionLink("Details", "Details", new { item.Id }) |
-                @Html.ActionLink("Delete", "DeleteCustomer", new { item.Id })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditCustomer", "Customer", new { id = item.Id })'" class="btn btn-dark btn-sm" />
+                    <input type="button" value="Szczegóły" onclick="location.href='@Url.Action("Details", "Customer", new { id = item.Id })'" class="btn btn-secondary btn-sm" />
+                    <input type="button" value="Usuń" onclick="location.href='@Url.Action("DeleteCustomer", "Customer", new { id = item.Id })'" class="btn btn-danger btn-sm" />
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#customerTable').DataTable();
+        });
+    </script>
+}
