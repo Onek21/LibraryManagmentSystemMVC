@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Domain.Model;
 using System;
@@ -30,6 +31,20 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.CustomerVm
             profile.CreateMap<CustomerForEditVm, Customer>()
                 .ForMember(src => src.Addresses, opt => opt.Ignore())
                 .ReverseMap();
+        }
+    }
+
+    public class CustomerForEditValidation : AbstractValidator<CustomerForEditVm>
+    {
+        public CustomerForEditValidation()
+        {
+            RuleFor(x => x.FirstName).NotEmpty();
+            RuleFor(x => x.FirstName).MinimumLength(2);
+            RuleFor(x => x.LastName).NotEmpty();
+            RuleFor(x => x.LastName).MinimumLength(2);
+            RuleFor(x => x.PhoneNumber).Length(9);
+            RuleFor(x => x.Email).EmailAddress();
+
         }
     }
 }

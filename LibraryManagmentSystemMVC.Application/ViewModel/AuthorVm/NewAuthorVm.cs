@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Domain.Model;
 using System;
@@ -23,6 +24,16 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.AuthorVm
         {
             profile.CreateMap<NewAuthorVm, Author>()
                 .ReverseMap();
+        }
+    }
+
+    public class NewAuthorValidaton :AbstractValidator<NewAuthorVm>
+    {
+        public NewAuthorValidaton()
+        {
+            RuleFor(x => x.FirstName).NotEmpty();
+            RuleFor(x => x.FirstName).MinimumLength(3);
+            RuleFor(x => x.LastName).NotEmpty();
         }
     }
 }

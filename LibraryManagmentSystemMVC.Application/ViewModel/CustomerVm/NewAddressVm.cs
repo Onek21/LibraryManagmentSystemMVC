@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Domain.Model;
 using System;
@@ -27,6 +28,17 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.CustomerVm
         public void Mapping(Profile profile)
         {
             profile.CreateMap<NewAddressVm, Address>().ReverseMap();
+        }
+    }
+
+    public class NewAddressValidation : AbstractValidator<NewAddressVm>
+    {
+        public NewAddressValidation()
+        {
+            RuleFor(x => x.Country).NotEmpty();
+            RuleFor(x => x.City).NotEmpty();
+            RuleFor(x => x.Street).NotEmpty();
+            RuleFor(x => x.HouseNumber).NotEmpty();
         }
     }
 }

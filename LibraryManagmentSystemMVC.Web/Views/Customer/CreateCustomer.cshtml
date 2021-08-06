@@ -67,7 +67,7 @@
                 <span asp-validation-for="Addresses[0].HouseNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input id="AddButton" type="button" value="New address" class="btn btn-dark" />
+                <input id="AddButton" type="button" value="Nowy adres" class="btn btn-dark" />
             </div>
             <div id="TextBoxContainer">
 
@@ -114,7 +114,7 @@
             div.append(streetBox);
             div.append(houseNumber);
             div.append(houseNumberBox);
-            var button = $("<input class='btn btn-secondary mt-1 mb-1'/>").attr("type", "button").attr("value", "Remove");
+            var button = $("<input class='btn btn-secondary mt-1 mb-1'/>").attr("type", "button").attr("value", "Usuń");
             button.attr("onclick", "RemoveTextBox(this)");
             div.append(button);
             $("#TextBoxContainer").append(div);

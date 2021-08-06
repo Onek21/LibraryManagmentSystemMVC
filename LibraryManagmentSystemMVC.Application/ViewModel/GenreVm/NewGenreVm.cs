@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Domain.Model;
 using System;
@@ -21,6 +22,14 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.GenreVm
         public void Mapping(Profile profile)
         {
             profile.CreateMap<NewGenreVm, Genre>().ReverseMap();
+        }
+    }
+
+    public class NewGenreValidation : AbstractValidator<NewGenreVm>
+    {
+        public NewGenreValidation()
+        {
+            RuleFor(x => x.Name).NotEmpty();
         }
     }
 }

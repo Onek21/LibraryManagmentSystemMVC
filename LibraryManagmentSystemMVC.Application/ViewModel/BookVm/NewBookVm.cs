@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Application.ViewModel.AuthorVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.GenreVm;
@@ -41,6 +42,20 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.BookVm
                 .ForMember(dto => dto.BookAuthors, opt => opt.Ignore())
                 .ForMember(dto => dto.BookGenres, opt => opt.Ignore())
                 .ReverseMap();
+        }
+    }
+
+    public class NewBookValidation : AbstractValidator<NewBookVm>
+    {
+        public NewBookValidation()
+        {
+            RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.Name).MinimumLength(2);
+            RuleFor(x => x.PublishingHouse).NotEmpty();
+            RuleFor(x => x.PublishingHouse).MinimumLength(2);
+            RuleFor(x => x.RealseDate).NotEmpty();
+            RuleFor(x => x.AuthorId).NotEmpty();
+            RuleFor(x => x.GenresId).NotEmpty();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Domain.Model;
 using System;
@@ -27,6 +28,15 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.ReservationVm
         public void Mapping (Profile profile)
         {
             profile.CreateMap<NewReservationVm, Reservation>().ReverseMap();
+        }
+    }
+
+    public class NewReservationValidation : AbstractValidator<NewReservationVm>
+    {
+        public NewReservationValidation()
+        {
+            RuleFor(x => x.BookId).NotEmpty();
+            RuleFor(x => x.CustomerId).NotEmpty();
         }
     }
 }

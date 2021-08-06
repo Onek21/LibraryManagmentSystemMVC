@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using LibraryManagmentSystemMVC.Application;
 using LibraryManagmentSystemMVC.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -38,7 +39,7 @@ namespace LibraryManagmentSystemMVC.Web
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

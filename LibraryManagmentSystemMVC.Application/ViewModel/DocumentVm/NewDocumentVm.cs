@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using LibraryManagmentSystemMVC.Application.Mapping;
 using LibraryManagmentSystemMVC.Domain.Model;
 using System;
@@ -25,6 +26,15 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Document, NewDocumentVm>().ReverseMap();
+        }
+    }
+
+    public class NewDocumentValidation : AbstractValidator<NewDocumentVm>
+    {
+        public NewDocumentValidation()
+        {
+            RuleFor(x => x.Quantity).GreaterThan(0);
+            RuleFor(x => x.Type).NotEmpty();
         }
     }
 }
