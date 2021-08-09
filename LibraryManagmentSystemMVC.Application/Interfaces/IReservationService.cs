@@ -19,5 +19,6 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
         ReservationDetailVm ReservationDetail(int id);
         void MarkReservationAsOverTime();
         List<ReservationStateVm> GetReservationStates();
+        List<ReservationForListVm> GetCustomerReservations(int customerId);
     }
 }

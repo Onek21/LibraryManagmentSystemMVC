@@ -12,10 +12,12 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerService _custService;
+        private readonly IReservationService _reservationService;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService, IReservationService reservationService)
         {
             _custService = customerService;
+            _reservationService = reservationService;
         }
         public IActionResult Index()
         {
@@ -70,6 +72,12 @@ namespace LibraryManagmentSystemMVC.Web.Controllers
         {
             _custService.DeleteCustomer(customerForEditVm);
             return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult GetCustomerHistory(int id)
+        {
+            var model = _reservationService.GetCustomerReservations(id);
+            return View(model);
         }
     }
 }

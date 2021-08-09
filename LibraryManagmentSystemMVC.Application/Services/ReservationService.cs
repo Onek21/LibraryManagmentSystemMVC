@@ -86,6 +86,12 @@ namespace LibraryManagmentSystemMVC.Application.Services
             return reservations;
         }
 
+        public List<ReservationForListVm> GetCustomerReservations(int customerId)
+        {
+            var reservations = _reservationRepo.GetReservations().Where(x => x.CustomerId == customerId).ProjectTo<ReservationForListVm>(_mapper.ConfigurationProvider).ToList();
+            return reservations;
+        }
+
         public List<ReservationStateVm> GetReservationStates()
         {
             var reservationStates = _reservationRepo.GetReservationStates().ProjectTo<ReservationStateVm>(_mapper.ConfigurationProvider).ToList();

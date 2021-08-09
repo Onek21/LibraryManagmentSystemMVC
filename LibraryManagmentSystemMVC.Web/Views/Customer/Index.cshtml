@@ -35,6 +35,7 @@
                     <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditCustomer", "Customer", new { id = item.Id })'" class="btn btn-dark btn-sm" />
                     <input type="button" value="Szczegóły" onclick="location.href='@Url.Action("Details", "Customer", new { id = item.Id })'" class="btn btn-secondary btn-sm" />
                     <input type="button" value="Usuń" onclick="location.href='@Url.Action("DeleteCustomer", "Customer", new { id = item.Id })'" class="btn btn-danger btn-sm" />
+                    <input type="button" value="Historia" onclick="location.href='@Url.Action("GetCustomerHistory", "Customer", new { id = item.Id })'" class="btn btn-info btn-sm" />
                 </td>
             </tr>
         }
