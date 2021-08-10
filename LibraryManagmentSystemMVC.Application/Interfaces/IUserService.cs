@@ -12,7 +12,7 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
     {
         Task<IdentityResult> AddRole(NewRoleVm newRoleVm);
         Task<IdentityResult> AddUser(NewUserVm newUserVm);
-        Task<IdentityResult> ChangeUserRoles(string id, List<string> roles);
+        Task ChangeUserRoles(string id, List<string> roles);
         Task<IdentityResult> EditUser(NewUserVm newUserVm);
         List<RoleForListVm> GetRoles();
         NewUserVm GetUserById(string id);

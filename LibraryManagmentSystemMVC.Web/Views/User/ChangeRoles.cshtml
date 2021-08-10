@@ -4,58 +4,47 @@
     ViewData["Title"] = "ChangeRoles";
 }
 
-<h1>ChangeRoles</h1>
 
-<h4>NewUserVm</h4>
+<h4>Nadaj uprawnienia</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="ChangeRoles">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input type="hidden" asp-for="Id" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input readonly asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input readonly asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input readonly asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input readonly asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-
-            @foreach(var role in Model.Roles)
-            {
-                <div class="custom-checkbox">
-                    <label>
-                        <input type="checkbox"
-                               name="UserRoles"
-                               value="@role.Name" 
-                               @if (Model.UserRoles.Contains(role.Name)) { <text> checked </text> }/>@role.Name
-                    </label>
+            <div class="form-group row">
+                <label asp-for="UserName" class="control-label col-md-2"></label>
+                <div class="col-md-6">
+                    <input readonly asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
-            }
+            </div>
+            
+                <h5>Wybierz uprawnienia</h5>
+                @foreach (var role in Model.Roles)
+                {
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   name="UserRoles"
+                                   value="@role.Name"
+                                   @if (Model.UserRoles.Contains(role.Name)) { <text> checked </text> } />@role.Name
+                            </label>
+                        </div>
+                    }
+            
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
 
 @section Scripts {

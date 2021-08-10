@@ -90,23 +90,29 @@ namespace LibraryManagmentSystemMVC.Application.Services
 
         }
 
-        private async Task<IdentityResult> AddRolesToUser(ApplicationUser user, List<string> roles)
+        private async Task AddRolesToUser(ApplicationUser user, List<string> roles)
         {
-            return await _userManager.AddToRolesAsync(user, roles);
+            if(roles != null)
+            {
+                await _userManager.AddToRolesAsync(user, roles);
+            }
         }
 
-        private async Task<IdentityResult> RemoveRolesFromUser(ApplicationUser user)
+        private async Task RemoveRolesFromUser(ApplicationUser user)
         {
             var roles = await _userManager.GetRolesAsync(user); 
-            return await _userManager.RemoveFromRolesAsync(user, roles);
-            
+            if(roles.Count > 0)
+            { 
+                await _userManager.RemoveFromRolesAsync(user, roles);
+            }
+
         }
 
-        public async Task<IdentityResult> ChangeUserRoles(string id, List<string> roles)
+        public async Task ChangeUserRoles(string id, List<string> roles)
         {
             var user = await _userManager.FindByIdAsync(id);
             await RemoveRolesFromUser(user);
-            return await AddRolesToUser(user, roles);
+            await AddRolesToUser(user, roles);
 
         }
         

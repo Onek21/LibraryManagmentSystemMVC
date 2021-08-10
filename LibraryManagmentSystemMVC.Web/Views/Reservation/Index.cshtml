@@ -70,8 +70,8 @@
                 </td>
                 <td>
                     <input type="button" value="Przedłuż" onclick="location.href='@Url.Action("ExtendReservation", "Reservation", new { id = item.Id })'" class="btn btn-secondary btn-sm" />
-                    <input type="button" value="Anuluj" onclick="location.href='@Url.Action("CancelReservation", "Reservation",new { id = item.Id }))'" class="btn btn-danger btn-sm" />
-                    <input type="button" value="Zakończ" onclick="location.href='@Url.Action("MarkReservationAsComplete", "Reservation",new { id = item.Id }))'" class="btn btn-success btn-sm" />
+                    <input type="button" value="Anuluj" onclick="location.href='@Url.Action("CancelReservation", "Reservation",new { id = item.Id })'" class="btn btn-danger btn-sm" />
+                    <input type="button" value="Zakończ" onclick="location.href='@Url.Action("MarkReservationAsComplete", "Reservation",new { id = item.Id })'" class="btn btn-success btn-sm" />
                 </td>
             </tr>
         }

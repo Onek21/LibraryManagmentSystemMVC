@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using LibraryManagmentSystemMVC.Domain.Model;
+using System.ComponentModel;
 
 namespace LibraryManagmentSystemMVC.Web.Areas.Identity.Pages.Account
 {
@@ -44,13 +45,15 @@ namespace LibraryManagmentSystemMVC.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DisplayName("Nazwa użytkownika")]
             public string Name { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [DisplayName("Hasło")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Zapamiętaj mnie?")]
             public bool RememberMe { get; set; }
         }
 

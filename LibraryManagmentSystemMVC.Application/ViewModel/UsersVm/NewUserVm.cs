@@ -27,6 +27,7 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.UsersVm
         public string FirstName { get; set; }
         [DisplayName("Nazwisko")]
         public string LastName { get; set; }
+        [DisplayName("Uprawnienia użytkownika")]
         public List<string> UserRoles { get; set; }
         public List<RoleForListVm> Roles { get; set; }
         public bool IsLockout { get; set; }

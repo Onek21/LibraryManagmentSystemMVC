@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagmentSystemMVC.Web.Controllers
 {
-    [Authorize(Roles ="Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

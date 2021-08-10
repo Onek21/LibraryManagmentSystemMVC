@@ -8,31 +8,30 @@
 
 <div>
     <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Id)</th>
-                <td>@Html.DisplayFor(model => model.Id)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <td>@Html.DisplayFor(model => model.Name)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.PublishingHouse)</th>
-                <td>@Html.DisplayFor(model => model.PublishingHouse)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.RealseDate)</th>
-                <td>@Html.DisplayFor(model => model.RealseDate)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Quanity)</th>
-                <td>@Html.DisplayFor(model => model.Quanity)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.QuantityOnState)</th>
-                <td>@Html.DisplayFor(model => model.QuantityOnState)</td>
-            </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <td>@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <td>@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.PublishingHouse)</th>
+            <td>@Html.DisplayFor(model => model.PublishingHouse)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.RealseDate)</th>
+            <td>@Html.DisplayFor(model => model.RealseDate)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Quanity)</th>
+            <td>@Html.DisplayFor(model => model.Quanity)</td>
+        </tr>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.QuantityOnState)</th>
+            <td>@Html.DisplayFor(model => model.QuantityOnState)</td>
+        </tr>
     </table>
     <div class="row">
         <div class="col-md-6">
@@ -73,5 +72,5 @@
 </div>
 <div>
     <input type="button" value="Edytuj" onclick="location.href='@Url.Action("EditBook", "Book", new { id = Model.Id })'" class="btn btn-dark" /> <br />
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Powrót do listy</a>
 </div>
