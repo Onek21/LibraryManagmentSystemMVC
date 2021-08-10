@@ -17,8 +17,4 @@
     <ProjectReference Include="..\LibraryManagmentSystemMVC.Domain\LibraryManagmentSystemMVC.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModel\UsersVm\" />
-  </ItemGroup>
-
 </Project>

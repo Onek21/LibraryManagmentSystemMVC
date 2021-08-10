@@ -21,6 +21,7 @@ namespace LibraryManagmentSystemMVC.Infrastructure
         public DbSet<Genre> Genres { get; set; }
         public DbSet<ReservationState> ReservationStates { get; set; }
         public DbSet<Document> Documents { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public Context(DbContextOptions options) : base(options)
         {
@@ -52,7 +53,10 @@ namespace LibraryManagmentSystemMVC.Infrastructure
             builder.Entity<BookGenre>()
                 .HasOne<Genre>(it => it.Genre).WithMany(i => i.BookGenres)
                 .HasForeignKey(it => it.GenreId);
-
+            
+            builder.Entity<ApplicationUser>()
+                .Property(e => e.Id)
+                .ValueGeneratedOnAdd();
         }
     }
 }

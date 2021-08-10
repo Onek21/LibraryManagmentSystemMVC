@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using LibraryManagmentSystemMVC.Application;
+using LibraryManagmentSystemMVC.Domain.Model;
 using LibraryManagmentSystemMVC.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,9 +38,21 @@ namespace LibraryManagmentSystemMVC.Web
             services.AddAplication();
             services.AddInfrastructure();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews().AddFluentValidation();
+
+            services.Configure<IdentityOptions>(opt =>
+            {
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 8;
+
+                opt.SignIn.RequireConfirmedEmail = false;
+                opt.User.RequireUniqueEmail = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

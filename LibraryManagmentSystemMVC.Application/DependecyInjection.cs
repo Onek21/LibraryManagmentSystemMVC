@@ -8,6 +8,7 @@ using LibraryManagmentSystemMVC.Application.ViewModel.CustomerVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.GenreVm;
 using LibraryManagmentSystemMVC.Application.ViewModel.ReservationVm;
+using LibraryManagmentSystemMVC.Application.ViewModel.UsersVm;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -20,6 +21,7 @@ namespace LibraryManagmentSystemMVC.Application
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddTransient<IValidator<NewAuthorVm>, NewAuthorValidaton>();
@@ -30,6 +32,7 @@ namespace LibraryManagmentSystemMVC.Application
             services.AddTransient<IValidator<NewGenreVm>, NewGenreValidation>();
             services.AddTransient<IValidator<NewDocumentVm>, NewDocumentValidation>();
             services.AddTransient<IValidator<NewReservationVm>, NewReservationValidation>();
+            services.AddTransient<IValidator<NewUserVm>, NewUserVmValidation>();
             return services;
         }
     }
