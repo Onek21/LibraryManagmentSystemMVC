@@ -27,6 +27,10 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.UsersVm
         public string FirstName { get; set; }
         [DisplayName("Nazwisko")]
         public string LastName { get; set; }
+        public List<string> UserRoles { get; set; }
+        public List<RoleForListVm> Roles { get; set; }
+        public bool IsLockout { get; set; }
+        public DateTimeOffset LockoutEnd { get; set; }
         public void Mapping(Profile profile)
         {
             profile.CreateMap<NewUserVm, ApplicationUser>()
@@ -41,7 +45,7 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.UsersVm
             RuleFor(x => x.UserName).NotEmpty().WithMessage("Nazwa użytkownika nie może być pusta");
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email nie może być pusty").EmailAddress().WithMessage("Proszę podać adres email w odpowiednim formacie");
             RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("Hasła muszą być identyczne");
-            RuleFor(x => x.Password).MinimumLength(8).Matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$").WithMessage("Hasło musi posiadać długość min. 8 znaków oraz zawierać cyfrę, małą oraz wielką literę");
+            RuleFor(x => x.Password).MinimumLength(8).Matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$").WithMessage("Hasło musi posiadać długość min. 8 znaków oraz zawierać cyfrę, małą oraz wielką literę").NotEmpty().WithMessage("Hasło nie może być puste");
             RuleFor(x => x.FirstName).NotEmpty().WithMessage("Polę 'imię' nie może być puste");
             RuleFor(x => x.LastName).NotEmpty().WithMessage("Polę 'nazwisko' nie może być puste");
         }

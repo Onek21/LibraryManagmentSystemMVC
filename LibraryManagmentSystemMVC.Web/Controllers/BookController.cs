@@ -1,5 +1,6 @@
 ﻿using LibraryManagmentSystemMVC.Application.Interfaces;
 using LibraryManagmentSystemMVC.Application.ViewModel.BookVm;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagmentSystemMVC.Web.Controllers
 {
+    [Authorize]
     public class BookController : Controller
     {
         private readonly ILogger<HomeController> _logger;

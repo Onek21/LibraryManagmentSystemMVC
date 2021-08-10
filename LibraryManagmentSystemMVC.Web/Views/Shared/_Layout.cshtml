@@ -21,48 +21,51 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="#reservationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reservations</a>
+                    <a href="#reservationSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Rezerwacje</a>
                     <ul class="collapse list-unstyled" id="reservationSubmenu">
                         <li>
-                            <a asp-area="" asp-controller="Reservation" asp-action="Index">Active Reservations</a>
+                            <a asp-area="" asp-controller="Reservation" asp-action="Index">Aktywne rezerwacje</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Reservation" asp-action="CompletedReservations">Done Reservations</a>
+                            <a asp-area="" asp-controller="Reservation" asp-action="CompletedReservations">Zakończone rezerwacje</a>
                         </li>
                         <li>
-                            <a asp-area="" asp-controller="Reservation" asp-action="CanceledReservations">Canceled Reservations</a>
+                            <a asp-area="" asp-controller="Reservation" asp-action="CanceledReservations">Anulowane rezerwacje</a>
                         </li>
                     </ul>
                 </li>
-                @*<li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a asp-area="" asp-controller="Book" asp-action="Index">Książki</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Author" asp-action="Index">Autorzy</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Genre" asp-action="Index">Gatunki</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Customer" asp-action="Index">Klienci</a>
+                </li>
+                @if(User.IsInRole("Administrator") || User.IsInRole("Kierownik"))
+                { 
+                    <li>
+                        <a asp-area="" asp-controller="Document" asp-action="Index">Dokumenty</a>
+                    </li>
+                }
+                @if(User.IsInRole("Administrator"))
+                { 
+                    <li>
+                        <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administracja</a>
+                        <ul class="collapse list-unstyled" id="userSubmenu">
                             <li>
-                                <a href="#">Home 1</a>
+                                <a asp-area="" asp-controller="User" asp-action="Index">Użytkownicy</a>
                             </li>
                             <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
+                                <a asp-area="" asp-controller="User" asp-action="RolesList">Role</a>
                             </li>
                         </ul>
-                    </li>*@
-                <li>
-                    <a asp-area="" asp-controller="Book" asp-action="Index">Books</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Genre" asp-action="Index">Genres</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Customer" asp-action="Index">Customers</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Document" asp-action="Index">Documents</a>
-                </li>
+                    </li>
+                }
             </ul>
 
         </nav>
@@ -83,51 +86,6 @@
             </div>
         </div>
     </div>
-    @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LMS</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Genre" asp-action="Index">Genres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Document" asp-action="Index">Documents</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
-                            </li>
-                        </ul>
-                        <partial name="_LoginPartial" />
-                    </div>
-                </div>
-            </nav>
-        </header>*@
-    @*<div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>*@
 
     <footer class="border-top footer text-muted">
         <div class="container">

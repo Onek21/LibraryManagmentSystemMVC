@@ -10,7 +10,13 @@ namespace LibraryManagmentSystemMVC.Application.Interfaces
 {
     public interface IUserService
     {
+        Task<IdentityResult> AddRole(NewRoleVm newRoleVm);
         Task<IdentityResult> AddUser(NewUserVm newUserVm);
+        Task<IdentityResult> ChangeUserRoles(string id, List<string> roles);
+        Task<IdentityResult> EditUser(NewUserVm newUserVm);
+        List<RoleForListVm> GetRoles();
+        NewUserVm GetUserById(string id);
         List<UserForListVm> GetUsers();
+        Task ResetPassword(NewUserVm newUserVm);
     }
 }

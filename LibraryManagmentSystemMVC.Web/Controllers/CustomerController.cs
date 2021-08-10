@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LibraryManagmentSystemMVC.Application.Interfaces;
 using LibraryManagmentSystemMVC.Application.ViewModel.CustomerVm;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace LibraryManagmentSystemMVC.Web.Controllers
-{
+{  
+     [Authorize]
     public class CustomerController : Controller
     {
         private readonly ICustomerService _custService;

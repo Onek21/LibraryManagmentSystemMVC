@@ -1,5 +1,6 @@
 ﻿using LibraryManagmentSystemMVC.Application.Interfaces;
 using LibraryManagmentSystemMVC.Application.ViewModel.DocumentVm;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace LibraryManagmentSystemMVC.Web.Controllers
-{
+{   
+    [Authorize(Roles = "Kierownik, Administrator")]
     public class DocumentController : Controller
     {
         private readonly IBookService _bookService;

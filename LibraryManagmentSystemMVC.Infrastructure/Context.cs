@@ -1,4 +1,5 @@
 ﻿using LibraryManagmentSystemMVC.Domain.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -57,6 +58,10 @@ namespace LibraryManagmentSystemMVC.Infrastructure
             builder.Entity<ApplicationUser>()
                 .Property(e => e.Id)
                 .ValueGeneratedOnAdd();
+
+            builder.Entity<IdentityRole>()
+               .Property(e => e.Id)
+               .ValueGeneratedOnAdd();
         }
     }
 }

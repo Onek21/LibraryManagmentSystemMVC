@@ -18,14 +18,14 @@ namespace LibraryManagmentSystemMVC.Application.ViewModel.UsersVm
         public string UserName { get; set; }
         [DisplayName("Email")]
         public string Email { get; set; }
-        [DisplayName("Imię")]
-        public string FirstName { get; set; }
-        [DisplayName("Nazwisko")]
-        public string LastName { get; set; }
+        [DisplayName("Imię i nazwisko")]
+        public string Name { get; set; }
+        public string Roles { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ApplicationUser, UserForListVm>();
+            profile.CreateMap<ApplicationUser, UserForListVm>()
+                .ForMember(src => src.Name, opt => opt.MapFrom(dst => dst.FirstName + " " + dst.LastName));
         }
     }
 }

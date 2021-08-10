@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LibraryManagmentSystemMVC.Application.Interfaces;
 using LibraryManagmentSystemMVC.Application.ViewModel.AuthorVm;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagmentSystemMVC.Web.Controllers
 {
+    [Authorize]
     public class AuthorController : Controller
     {
         private readonly IBookService _bookService;
