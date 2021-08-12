@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagmentSystemMVC.Web", "LibraryManagmentSystemMVC.Web\LibraryManagmentSystemMVC.Web.csproj", "{DA2194C1-A981-4BE5-B70F-19171050D272}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagmentSystemMVC.Web", "LibraryManagmentSystemMVC.Web\LibraryManagmentSystemMVC.Web.csproj", "{DA2194C1-A981-4BE5-B70F-19171050D272}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{AB8E265D-6A3B-46D7-AF2E-F851A3A36A03}"
 EndProject
@@ -13,11 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{D3139B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{7D041C85-A999-49ED-ACF2-2F2DCBD7B1EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagmentSystemMVC.Application", "LibraryManagmentSystemMVC.Application\LibraryManagmentSystemMVC.Application.csproj", "{C3BC2FEE-B7CF-459A-AD58-DCEE52EEAF61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagmentSystemMVC.Application", "LibraryManagmentSystemMVC.Application\LibraryManagmentSystemMVC.Application.csproj", "{C3BC2FEE-B7CF-459A-AD58-DCEE52EEAF61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagmentSystemMVC.Domain", "LibraryManagmentSystemMVC.Domain\LibraryManagmentSystemMVC.Domain.csproj", "{187035ED-08DE-4110-A959-D6D3900F952F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagmentSystemMVC.Domain", "LibraryManagmentSystemMVC.Domain\LibraryManagmentSystemMVC.Domain.csproj", "{187035ED-08DE-4110-A959-D6D3900F952F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagmentSystemMVC.Infrastructure", "LibraryManagmentSystemMVC.Infrastructure\LibraryManagmentSystemMVC.Infrastructure.csproj", "{E97394AF-DAFE-48C2-B028-912A2BC10A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagmentSystemMVC.Infrastructure", "LibraryManagmentSystemMVC.Infrastructure\LibraryManagmentSystemMVC.Infrastructure.csproj", "{E97394AF-DAFE-48C2-B028-912A2BC10A38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{02823717-1C3B-4892-98C9-DDA2893C72FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagmentSystemMVC.Api", "LibraryManagmentSystemMVC.Api\LibraryManagmentSystemMVC.Api.csproj", "{A3322DE0-DED8-4849-96A6-2B1A72CD953E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{E97394AF-DAFE-48C2-B028-912A2BC10A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97394AF-DAFE-48C2-B028-912A2BC10A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E97394AF-DAFE-48C2-B028-912A2BC10A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3322DE0-DED8-4849-96A6-2B1A72CD953E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3322DE0-DED8-4849-96A6-2B1A72CD953E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3322DE0-DED8-4849-96A6-2B1A72CD953E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3322DE0-DED8-4849-96A6-2B1A72CD953E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{C3BC2FEE-B7CF-459A-AD58-DCEE52EEAF61} = {EFD570CD-7C7A-45E2-A7F2-66F6285443CD}
 		{187035ED-08DE-4110-A959-D6D3900F952F} = {D3139B5B-C80E-477C-8928-650916167BD6}
 		{E97394AF-DAFE-48C2-B028-912A2BC10A38} = {7D041C85-A999-49ED-ACF2-2F2DCBD7B1EE}
+		{A3322DE0-DED8-4849-96A6-2B1A72CD953E} = {02823717-1C3B-4892-98C9-DDA2893C72FD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B77C539A-4D09-4FC7-A62F-C31B50278BF8}
