@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LibraryManagmentSystemMVC.Api.Controllers
 {
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Kierownik")]
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {

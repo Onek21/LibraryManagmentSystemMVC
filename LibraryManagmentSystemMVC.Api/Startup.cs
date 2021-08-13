@@ -39,7 +39,7 @@ namespace LibraryManagmentSystemMVC.Api
                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-              //.AddRoles<IdentityRole>()
+              .AddRoles<IdentityRole>()
               .AddEntityFrameworkStores<Context>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
