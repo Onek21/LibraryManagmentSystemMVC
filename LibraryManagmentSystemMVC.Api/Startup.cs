@@ -1,3 +1,4 @@
+using LibraryManagmentSystemMVC.Application;
 using LibraryManagmentSystemMVC.Domain.Model;
 using LibraryManagmentSystemMVC.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -57,6 +58,8 @@ namespace LibraryManagmentSystemMVC.Api
                     };
                 });
             services.AddControllers();
+            services.AddAplication();
+            services.AddInfrastructure();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LibraryManagmentSystemMVC.Api", Version = "v1" });
